@@ -5,9 +5,6 @@ const ListBooks = (props) => {
     const currentlyBooks = props.books.filter(book => book.shelf === 'currentlyReading');
     const wantToReadBooks = props.books.filter(book => book.shelf === 'wantToRead');
     const readBooks = props.books.filter(book => book.shelf === 'read');
-    console.log('currentlyBooks', currentlyBooks);
-    console.log('wantToReadBooks', wantToReadBooks);
-    console.log('readBooks', readBooks);
 
     return (
     <div className="list-books">
@@ -18,17 +15,29 @@ const ListBooks = (props) => {
             <div>
                 {
                     currentlyBooks.length > 0 && (
-                        <Bookshelf books={currentlyBooks} title={'Currently Reading'} />
+                        <Bookshelf
+                            books={currentlyBooks}
+                            title={'Currently Reading'}
+                            onBookshelfChange={props.onBookshelfChange}
+                        />
                     )
                 }
                 {
                     wantToReadBooks.length > 0 && (
-                        <Bookshelf books={wantToReadBooks} title={'Want to Read'} />
+                        <Bookshelf
+                            books={wantToReadBooks}
+                            title={'Want to Read'}
+                            onBookshelfChange={props.onBookshelfChange}
+                        />
                     )
                 }
                 {
                     readBooks.length > 0 && (
-                        <Bookshelf books={readBooks} title={'Read'} />
+                        <Bookshelf
+                            books={readBooks}
+                            title={'Read'}
+                            onBookshelfChange={props.onBookshelfChange}
+                        />
                     )
                 }
             </div>

@@ -16,16 +16,23 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-  componentDidMount() {
+  getBooks = () => {
     BooksAPI.getAll()
       .then((books) => {
-        console.log('BOOKS', books);
-        console.log('categorie', books.map(book => book.shelf)
-        .filter((value, index, self) => self.indexOf(value) === index)
-      );
         this.setState({
           books
         })
+      });
+  }
+
+  componentDidMount() {
+    this.getBooks();
+  }
+
+  onBookshelfChange = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+      .then((book, shelf) => {
+        this.getBooks();
       });
   }
 
@@ -47,7 +54,11 @@ class BooksApp extends React.Component {
         {this.state.showSearchPage ? (
           <Search onClickBack={this.onClickBack} />
         ) : (
-          <ListBooks onClickSearch={this.onClickSearch} books={this.state.books} />
+          <ListBooks
+            onClickSearch={this.onClickSearch}
+            onBookshelfChange={this.onBookshelfChange}
+            books={this.state.books}
+          />
         )}
       </div>
     )
