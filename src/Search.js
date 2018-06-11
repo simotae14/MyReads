@@ -3,7 +3,7 @@ import React from 'react'
 const Search = (props) => (
     <div className="search-books">
         <div className="search-books-bar">
-            <a className="close-search" onClick={props.onClickSearch}>Close</a>
+            <a className="close-search" onClick={() => props.onClickBack() }>Close</a>
             <div className="search-books-input-wrapper">
                 {/*
                     NOTES: The search from BooksAPI is limited to a particular set of search terms.
