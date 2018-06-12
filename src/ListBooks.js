@@ -1,5 +1,7 @@
 import React from 'react'
 import Bookshelf from './Bookshelf'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ListBooks = (props) => {
     const currentlyBooks = props.books.filter(book => book.shelf === 'currentlyReading');
@@ -43,9 +45,18 @@ const ListBooks = (props) => {
             </div>
         </div>
         <div className="open-search">
-            <a onClick={() => props.onClickSearch()}>Add a book</a>
+            <Link
+                to="/search"
+            >
+                Add a book
+            </Link>
         </div>
     </div>
 )};
+
+ListBooks.propTypes = {
+    books: PropTypes.array.isRequired,
+    onBookshelfChange: PropTypes.func.isRequired
+}
 
 export default ListBooks;
