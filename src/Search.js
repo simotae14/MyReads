@@ -11,7 +11,8 @@ class Search extends React.Component {
         this.state = {
             text: '',
             searchedBooks: [],
-            error: false
+            error: false,
+            numberResults: 20
         };
     }
     static propTypes = {
@@ -23,7 +24,7 @@ class Search extends React.Component {
             text: event.target.value
         });
         if(event.target.value !== '') {
-            BooksAPI.search(event.target.value, 20)
+            BooksAPI.search(event.target.value, this.state.numberResults)
             .then((results) => {
                 if(results && results.error) {
                     this.setState({
@@ -60,6 +61,12 @@ class Search extends React.Component {
                 return book.shelf;
             });
     }
+    setNumberResults = (event) => {
+        const maxValue = parseInt(event.target.innerText);
+        this.setState({
+            numberResults: maxValue
+        })
+    }
     render() {
         return (
             <div className="search-books">
@@ -85,9 +92,9 @@ class Search extends React.Component {
                         <h1>Error! Search an author or a title existent</h1>
                     </div>
                 ) : (
-                    <div className="search-books-results">
+                    <div className="search-books-results result-wrapper">
                         <ol className="books-grid">
-                            { this.state.searchedBooks.map((book) => {
+                            { this.state.searchedBooks.slice(0, this.state.numberResults).map((book) => {
                                 return (
                                 <Book
                                     key={book.id}
@@ -97,6 +104,12 @@ class Search extends React.Component {
                                 />
                             )}) }
                         </ol>
+                        <div className="add-button">
+                            <div className="sub-button tl" onClick={this.setNumberResults}>5</div>
+                            <div className="sub-button tr" onClick={this.setNumberResults}>10</div>
+                            <div className="sub-button bl" onClick={this.setNumberResults}>15</div>
+                            <div className="sub-button br" onClick={this.setNumberResults}>20</div>
+                        </div>
                     </div>
                 )}
             </div>

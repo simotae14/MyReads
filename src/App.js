@@ -5,31 +5,32 @@ import Search from './Search';
 import ListBooks from './ListBooks';
 import * as BooksAPI from './BooksAPI';
 import { Route } from 'react-router-dom';
+import _ from 'lodash';
 
 class BooksApp extends React.Component {
   state = {
     books: []
   }
 
-  getBooks = () => {
+  getBooks = _.debounce(() => {
     BooksAPI.getAll()
       .then((books) => {
         this.setState({
           books
         })
       });
-  }
+  });
 
   componentDidMount() {
     this.getBooks();
   }
 
-  onBookshelfChange = (book, shelf) => {
+  onBookshelfChange = _.debounce((book, shelf) => {
     BooksAPI.update(book, shelf)
       .then((book, shelf) => {
         this.getBooks();
       });
-  }
+  });
 
   render() {
     return (
