@@ -105,10 +105,22 @@ class Search extends React.Component {
                             )}) }
                         </ol>
                         <div className="add-button">
-                            <div className="sub-button tl" onClick={this.setNumberResults}>5</div>
-                            <div className="sub-button tr" onClick={this.setNumberResults}>10</div>
-                            <div className="sub-button bl" onClick={this.setNumberResults}>15</div>
-                            <div className="sub-button br" onClick={this.setNumberResults}>20</div>
+                            <div
+                                className={this.state.numberResults === 5  ? 'sub-button tl selected': 'sub-button tl'}
+                                onClick={this.setNumberResults}
+                            >5</div>
+                            <div
+                                className={this.state.numberResults === 10  ? 'sub-button tr selected': 'sub-button tr'}
+                                onClick={this.setNumberResults}
+                            >10</div>
+                            <div
+                                className={this.state.numberResults === 15  ? 'sub-button bl selected': 'sub-button bl'}
+                                onClick={this.setNumberResults}
+                            >15</div>
+                            <div
+                                className={this.state.numberResults === 20  ? 'sub-button br selected': 'sub-button br'}
+                                onClick={this.setNumberResults}
+                            >20</div>
                         </div>
                     </div>
                 )}

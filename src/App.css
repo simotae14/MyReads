@@ -214,8 +214,6 @@ body, .app {
   width: 28px;
   height: 28px;
   line-height:48px;
-  font-family: "Arial";
-  font-size: 12px;
   -webkit-transition: top .2s cubic-bezier(.58,-0.37,.45,1.46) .2s,
     left .2s cubic-bezier(.58,-0.37,.45,1.46) .2s,
     bottom .2s cubic-bezier(.58,-0.37,.45,1.46) .2s,
@@ -270,6 +268,7 @@ body, .app {
 }
 
 .add-button:hover .sub-button {
+  font-size: 28px;
   width: 48px;
   height: 48px;
   transform: rotate(-45deg);
@@ -302,6 +301,7 @@ body, .app {
     color .3s ease .8s,
     transform .3s ease .8s,
     border-radius .4s  ease .6s;
+
 }
 
 .add-button:hover .tl {
@@ -328,8 +328,6 @@ body, .app {
   border-radius: 28px;
 }
 
-.selected {
-  color:#ff4081;
-  background-color: rgba(255,255,255,0);
-
+.add-button:hover .selected {
+  background-color: #ce1a57;
 }
