@@ -173,7 +173,7 @@ body, .app {
   font-size: 0.8em;
 }
 
-.add-button {
+.max-button {
   position: absolute;
   right: 100px;
   top: 40px;
@@ -193,7 +193,7 @@ body, .app {
   z-index: 999;
 }
 
-.add-button:before {
+.max-button:before {
   position: relative;
   z-index: 100;
   content:"+";
@@ -201,7 +201,7 @@ body, .app {
 
 
 
-.add-button:hover {
+.max-button:hover {
   color: rgba(255,255,255,0);
   transform: rotate(45deg);
 }
@@ -267,7 +267,7 @@ body, .app {
   border-radius: 0 0 28px 0;
 }
 
-.add-button:hover .sub-button {
+.max-button:hover .sub-button {
   font-size: 28px;
   width: 48px;
   height: 48px;
@@ -304,30 +304,30 @@ body, .app {
 
 }
 
-.add-button:hover .tl {
+.max-button:hover .tl {
   top: -25px;
   left: -25px;
   border-radius: 28px;
 }
 
-.add-button:hover .tr {
+.max-button:hover .tr {
   top: -25px;
   right: -25px;
   border-radius: 28px;
 }
 
-.add-button:hover .bl {
+.max-button:hover .bl {
   bottom: -25px;
   left: -25px;
   border-radius: 28px;
 }
 
-.add-button:hover .br {
+.max-button:hover .br {
   bottom: -25px;
   right: -25px;
   border-radius: 28px;
 }
 
-.add-button:hover .selected {
+.max-button:hover .selected {
   background-color: #ce1a57;
 }

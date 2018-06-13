@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import Book from './Book'
+import SearchBar from './SearchBar'
+import MaxResultsButton from './MaxResultsButton'
+import BooksSearchResult from './BooksSearchResult'
 import * as BooksAPI from './BooksAPI';
-import {DebounceInput} from 'react-debounce-input';
 import PropTypes from 'prop-types';
 
 class Search extends React.Component {
@@ -62,7 +62,7 @@ class Search extends React.Component {
             });
     }
     setNumberResults = (event) => {
-        const maxValue = parseInt(event.target.innerText);
+        const maxValue = parseInt(event.target.innerText, 10);
         this.setState({
             numberResults: maxValue
         })
@@ -70,58 +70,25 @@ class Search extends React.Component {
     render() {
         return (
             <div className="search-books">
-                <div className="search-books-bar">
-                    <Link
-                        to='/'
-                        className='close-search'
-                    >
-                        Close
-                    </Link>
-                    <div className="search-books-input-wrapper">
-                        <DebounceInput
-                            type="text"
-                            placeholder="Search by title or author"
-                            debounceTimeout={300}
-                            value={this.state.text}
-                            onChange={this.handleSearchTextChange}
-                        />
-                    </div>
-                </div>
+                <SearchBar
+                    text={this.state.text}
+                    handleSearchTextChange={this.handleSearchTextChange}
+                />
                 { this.state.error ? (
                     <div className="search-books-results">
                         <h1>Error! Search an author or a title existent</h1>
                     </div>
                 ) : (
                     <div className="search-books-results result-wrapper">
-                        <ol className="books-grid">
-                            { this.state.searchedBooks.slice(0, this.state.numberResults).map((book) => {
-                                return (
-                                <Book
-                                    key={book.id}
-                                    book={book}
-                                    shelf={book.shelf}
-                                    onBookshelfChange={this.props.onBookshelfChange}
-                                />
-                            )}) }
-                        </ol>
-                        <div className="add-button">
-                            <div
-                                className={this.state.numberResults === 5  ? 'sub-button tl selected': 'sub-button tl'}
-                                onClick={this.setNumberResults}
-                            >5</div>
-                            <div
-                                className={this.state.numberResults === 10  ? 'sub-button tr selected': 'sub-button tr'}
-                                onClick={this.setNumberResults}
-                            >10</div>
-                            <div
-                                className={this.state.numberResults === 15  ? 'sub-button bl selected': 'sub-button bl'}
-                                onClick={this.setNumberResults}
-                            >15</div>
-                            <div
-                                className={this.state.numberResults === 20  ? 'sub-button br selected': 'sub-button br'}
-                                onClick={this.setNumberResults}
-                            >20</div>
-                        </div>
+                        <BooksSearchResult
+                            searchedBooks={this.state.searchedBooks}
+                            numberResults={this.state.numberResults}
+                            onBookshelfChange={this.props.onBookshelfChange}
+                         />
+                        <MaxResultsButton
+                            setNumberResults={this.setNumberResults}
+                            numberResults={this.state.numberResults}
+                         />
                     </div>
                 )}
             </div>
