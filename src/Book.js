@@ -8,7 +8,6 @@ const Book = (props) => {
         height: 193,
         backgroundImage: `url(${imageUrl})`
     }
-    console.log('shelf', props.shelf);
     return(
         <li>
             <div className="book">
