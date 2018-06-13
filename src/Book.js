@@ -8,6 +8,7 @@ const Book = (props) => {
         height: 193,
         backgroundImage: `url(${imageUrl})`
     }
+    console.log('shelf', props.shelf);
     return(
         <li>
             <div className="book">
@@ -15,7 +16,7 @@ const Book = (props) => {
                     <div className="book-cover" style={divStyle}></div>
                     <div className="book-shelf-changer">
                         <select
-                            value={props.shelf !== null && props.shelf !== undefined ? props.shelf : 'none'}
+                            value={props.shelf}
                             onChange={(event) => props.onBookshelfChange(props.book, event.target.value)}
                         >
                             <option value="none" disabled>Move to...</option>
@@ -36,7 +37,7 @@ const Book = (props) => {
 Book.propTypes = {
     onBookshelfChange: PropTypes.func.isRequired,
     book: PropTypes.object.isRequired,
-    shelf: PropTypes.string
+    shelf: PropTypes.string.isRequired
 }
 
 export default Book;

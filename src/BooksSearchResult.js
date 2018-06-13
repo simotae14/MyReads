@@ -10,7 +10,7 @@ const BooksSearchResult = (props) => {
                 <Book
                     key={book.id}
                     book={book}
-                    shelf={book.shelf}
+                    shelf={(book.shelf !== null && book.shelf !== undefined) ? book.shelf : 'none'}
                     onBookshelfChange={props.onBookshelfChange}
                 />
             )}) }
